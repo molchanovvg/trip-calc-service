@@ -1,9 +1,14 @@
-package trip_calc_service
+package main
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"os"
+	"os/signal"
+	"syscall"
+	"time"
 	"trip-calc-service/calc"
 	"trip-calc-service/storage"
 	"trip-calc-service/structures"
@@ -33,19 +38,28 @@ func handlerRequest(w http.ResponseWriter, r *http.Request) {
 	redisStorage.Set(trip.Token, string(result))
 
 	queueCalc <- trip.Token
-	// fmt.Println("Channel to -> ", trip.Token)
+
 	_, _ = w.Write(result)
 }
 
 func handlerResult(w http.ResponseWriter, r *http.Request) {
 
 	token := r.URL.Query().Get("token")
-	fmt.Println("Token from request: ", token)
 
-	ride := redisStorage.Get(token)
-	// TODO  добавить проверку, если запрос есть, а ответа нет, еще раз закинуть его в обработку
+	itemFromStorage := redisStorage.Get(token)
 
-	_, _ = w.Write([]byte(ride))
+	t := &structures.Trip{}
+
+	_ = json.Unmarshal([]byte(itemFromStorage), &t)
+
+	if t.Distance == 0 || t.TravelTime == 0 {
+		w.WriteHeader(http.StatusTooEarly)
+		return
+	}
+	result := "Distance (m):" + fmt.Sprintf("%f", t.Distance) + "\n"
+	result += "Time (s): " + fmt.Sprintf("%f", t.TravelTime)
+
+	_, _ = w.Write([]byte(result))
 }
 
 func worker(queue chan string) {
@@ -55,15 +69,43 @@ func worker(queue chan string) {
 	}
 }
 
+func waitForShutdown(srv *http.Server) {
+	interruptChan := make(chan os.Signal, 1)
+	signal.Notify(interruptChan, os.Interrupt, syscall.SIGINT, syscall.SIGTERM)
+
+	<-interruptChan
+
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
+	defer cancel()
+	_ = srv.Shutdown(ctx)
+
+	fmt.Println("Shutting down")
+	os.Exit(0)
+}
+
 func main() {
 
-	go worker(queueCalc)
+	fmt.Println("Start main ... ")
 
-	http.HandleFunc("/trip/calc/request", handlerRequest)
-	http.HandleFunc("/trip/calc/result", handlerResult)
+	// go worker(queueCalc)
 
-	err := http.ListenAndServe(":8080", nil)
-	if err == nil {
-		fmt.Println("Start calc structures service on :8080 ... ")
+	mux := http.NewServeMux()
+	mux.HandleFunc("/trip/calc/request", handlerRequest)
+	mux.HandleFunc("/trip/calc/result", handlerResult)
+
+	server := &http.Server{
+		Addr:    ":" + os.Getenv("SERVICE_PORT"),
+		Handler: mux,
 	}
+
+	go func() {
+		fmt.Println("Starting service on " + os.Getenv("SERVICE_PORT") + " ... ")
+		err := server.ListenAndServe()
+		if err != nil {
+			fmt.Println("Error start server", err)
+		}
+	}()
+
+	// Graceful Shutdown
+	waitForShutdown(server)
 }

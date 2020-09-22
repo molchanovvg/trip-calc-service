@@ -6,11 +6,10 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"os"
 	"trip-calc-service/storage"
 	"trip-calc-service/structures"
 )
-
-const routeService = "http://router.project-osrm.org/route/v1/driving/" // TODO to ENV
 
 func CalculateTrip(token string) {
 	var redisStorage = storage.RedisConnect()
@@ -21,15 +20,9 @@ func CalculateTrip(token string) {
 
 	_ = json.Unmarshal([]byte(itemFromStorage), t)
 
-	// сделать запрос по урлу
 	resp := runGet(createUrl(t))
 
-	//fmt.Printf("Response from project-osrm.org %#v\n\n\n", string(resp))
-
-	// распарсить ответ
 	t.Distance, t.TravelTime = parseResponse(resp)
-	fmt.Println("Update trip", t)
-	// записать в бд
 
 	result, err := json.Marshal(t)
 
@@ -66,7 +59,7 @@ func runGet(urlStr string) []byte {
 func createUrl(trip *structures.Trip) string {
 
 	var urlStr string
-	urlStr = routeService + trip.LatitudeFrom + "," + trip.LongitudeFrom + ";"
+	urlStr = os.Getenv("CALC_ROUTE_URL") + trip.LatitudeFrom + "," + trip.LongitudeFrom + ";"
 	urlStr += trip.LatitudeTo + "," + trip.LongitudeTo
 	return urlStr
 }
@@ -79,10 +72,6 @@ func parseResponse(body []byte) (float64, float64) {
 
 	routes := result["routes"].([]interface{})
 	route := routes[0].(map[string]interface{})
-	//
-	//fmt.Println("Route duration :", route["duration"])
-	//fmt.Printf("Route distance :")
-	//fmt.Printf("%f\n", route["distance"])
 
 	return route["duration"].(float64), route["distance"].(float64)
 }

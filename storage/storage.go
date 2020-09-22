@@ -3,7 +3,8 @@ package storage
 import (
 	"context"
 	"fmt"
-	"github.com/go-redis/redis"
+	redis "github.com/go-redis/redis/v8"
+	"os"
 )
 
 type RedisStorage struct {
@@ -16,9 +17,9 @@ func RedisConnect() *RedisStorage {
 	redisStorage := new(RedisStorage)
 
 	redisStorage.rdb = redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",
-		Password: "", // no password set
-		DB:       0,  // use default DB
+		Addr:     os.Getenv("REDIS_URL"),
+		Password: "", // default
+		DB:       0,  // default
 	})
 
 	redisStorage.ctx = context.Background()
@@ -40,15 +41,9 @@ func (redisStorage *RedisStorage) Set(key string, value string) {
 
 	err := redisStorage.rdb.Set(redisStorage.ctx, key, value, 0).Err()
 
-	fmt.Println("SET Key: ", key)     // debug
-	fmt.Println("SET Value: ", value) // debug
-
 	if err != nil {
-		fmt.Println("Error SET in redis: ", err)
+		fmt.Println("Error set in Redis", key, value, err)
 	}
-
-	result := redisStorage.Get(key)   // debug
-	fmt.Println("Try GET : ", result) // debug
 }
 
 func (redisStorage *RedisStorage) Get(key string) string {
