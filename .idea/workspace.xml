@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2854ab33-a73e-45ef-b46d-66a92719d975" name="Default Changelist" comment="Рабочий стейт">
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" path="/usr/local/go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1hjVUA4VTcaowjyalQ38F9gyt1W" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="GO_FMT" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/redis" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/redis" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/trip" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="imageTag" value="" />
+          <option name="buildCliOptions" value="" />
+          <option name="command" value="" />
+          <option name="containerName" value="" />
+          <option name="entrypoint" value="" />
+          <option name="commandLineOptions" value="" />
+          <option name="sourceFilePath" value="Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.Dockerfile" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Промежуточный коммит" />
+    <MESSAGE value="Рабочий стейт" />
+    <option name="LAST_COMMIT_MESSAGE" value="Рабочий стейт" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="520" y="264" key="#Go_Modules" timestamp="1600698582757">
+      <screen x="0" y="23" width="1440" height="803" />
+    </state>
+    <state x="520" y="264" key="#Go_Modules/0.23.1440.803@0.23.1440.803" timestamp="1600698582757" />
+    <state x="455" y="234" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1600841217425">
+      <screen x="0" y="23" width="1440" height="807" />
+    </state>
+    <state x="455" y="233" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.803@0.23.1440.803" timestamp="1600611486756" />
+    <state x="455" y="234" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.807@0.23.1440.807" timestamp="1600841217425" />
+    <state x="320" y="164" key="Vcs.Push.Dialog.v2" timestamp="1600781061579">
+      <screen x="0" y="23" width="1440" height="803" />
+    </state>
+    <state x="320" y="164" key="Vcs.Push.Dialog.v2/0.23.1440.803@0.23.1440.803" timestamp="1600781061579" />
+    <state x="121" y="153" width="1240" height="606" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1600789541261">
+      <screen x="0" y="23" width="1440" height="807" />
+    </state>
+    <state x="121" y="153" width="1240" height="602" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1440.803@0.23.1440.803" timestamp="1600780193769" />
+    <state x="121" y="153" width="1240" height="604" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1440.805@0.23.1440.805" timestamp="1600785686669" />
+    <state x="121" y="153" width="1240" height="606" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1440.807@0.23.1440.807" timestamp="1600789541261" />
+    <state x="421" y="180" width="598" height="492" key="find.popup" timestamp="1600852646393">
+      <screen x="0" y="23" width="1440" height="805" />
+    </state>
+    <state x="421" y="179" width="598" height="490" key="find.popup/0.23.1440.803@0.23.1440.803" timestamp="1600781027926" />
+    <state x="421" y="180" width="598" height="492" key="find.popup/0.23.1440.805@0.23.1440.805" timestamp="1600852646393" />
+    <state x="421" y="180" width="598" height="493" key="find.popup/0.23.1440.807@0.23.1440.807" timestamp="1600841140186" />
+  </component>
+</project>
