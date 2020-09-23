@@ -1,0 +1,20 @@
+version: "2"
+services:
+  go-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/go/src/trip-calc-service
+    working_dir: /go/src/trip-calc-service
+    ports:
+      - 8080:8080
+    links:
+      - db
+    environment:
+      REDIS_URL: db:6379
+      SERVICE_PORT: 8080
+      CALC_ROUTE_URL: http://router.project-osrm.org/route/v1/driving/
+
+  db:
+    image: redis:latest

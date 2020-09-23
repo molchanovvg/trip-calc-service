@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/joho/godotenv"
 	"net/http"
 	"os"
 	"os/signal"
@@ -20,6 +21,7 @@ var queueCalc = make(chan string, 1)
 
 func handlerRequest(w http.ResponseWriter, r *http.Request) {
 
+	fmt.Println("incoming request ... ")
 	trip := &structures.Trip{
 		LatitudeFrom:  r.FormValue("latitudeFrom"),
 		LongitudeFrom: r.FormValue("latitudeFrom"),
@@ -87,7 +89,12 @@ func main() {
 
 	fmt.Println("Start main ... ")
 
-	// go worker(queueCalc)
+	err := godotenv.Load(".env")
+	if err != nil {
+		fmt.Println("Error loading .env file")
+	}
+
+	go worker(queueCalc)
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/trip/calc/request", handlerRequest)
